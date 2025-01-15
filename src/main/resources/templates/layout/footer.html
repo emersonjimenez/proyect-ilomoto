@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <footer th:fragment="footer-content" class="footer">
+        <div class="container-fluid">
+            <div class="row text-muted">
+                <div class="col-12 text-center text-sm-center">
+                    <p class="mb-0 text-600">Todos los derechos reservados &copy;
+                        <span th:text="${#temporals.format(today, 'yyyy')}"></span> | Ilomoto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
