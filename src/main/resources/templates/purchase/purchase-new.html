@@ -44,13 +44,15 @@
         <!-- ============================================================== -->
         <!-- Start Page Content here -->
         <!-- ============================================================== -->
-
         <div class="content-page">
+            <!-- Start Content-->
             <div class="content">
-                <!-- Start Content-->
                 <div class="container-fluid"></div>
-                <!-- container -->
             </div>
+            <!-- End Content -->
+
+            <!-- Modal Logout -->
+            <div th:include="layout/logoutModal::logout-modal"></div>
 
             <!-- Footer Start -->
             <footer th:include="layout/footer::footer-content" class="footer"></footer>
@@ -74,11 +76,8 @@
 
     <!-- Vector Map js -->
     <script th:src="@{/vendor/jsvectormap/jsvectormap.min.js}"></script>
-    <script th:src="@{vendor/jsvectormap/maps/world-merc.js}"></script>
-    <script th:src="@{vendor/jsvectormap/maps/world.js}"></script>
-
-    <!-- Dashboard App js -->
-    <script th:src="@{/js/pages/demo.dashboard.js}"></script>
+    <script th:src="@{/vendor/jsvectormap/maps/world-merc.js}"></script>
+    <script th:src="@{/vendor/jsvectormap/maps/world.js}"></script>
 
     <!-- App js -->
     <script th:src="@{/js/app.min.js}"></script>
