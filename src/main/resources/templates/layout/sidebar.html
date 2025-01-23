@@ -2,334 +2,315 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <body>
     <div th:fragment="sidebar-content" class="leftside-menu">
-        <!-- Emerson estuvo aquí... -->
         <!-- Brand Logo Light -->
-        <a th:href="@{/}" class="logo logo-light">
-            <span class="logo-lg">
-                <img th:src="@{/images/logo.png}" alt="logo">
-            </span>
-            <span class="logo-sm">
-                <img th:src="@{/images/logo-sm.png}" alt="small logo">
-            </span>
+        <a th:href="@{/}" class="logo logo-light mt-2 text-center">
+            <img th:src="@{/images/logo-ilomoto.png}" alt="logo" width="75" height="80">
         </a>
 
         <!-- Brand Logo Dark -->
-        <a th:href="@{/}" class="logo logo-dark">
-            <span class="logo-lg">
-                <img th:src="@{/images/logo-dark.png}" alt="dark logo">
-            </span>
-            <span class="logo-sm">
-                <img th:src="@{/images/logo-dark-sm.png}" alt="small logo">
-            </span>
+        <a th:href="@{/}" class="logo logo-dark mt-2 text-center">
+            <img th:src="@{/images/logo-ilomoto.png}" alt="logo" width="75" height="80">
         </a>
 
-        <!-- Sidebar Hover Menu Toggle Button -->
-        <div class="button-sm-hover" data-bs-toggle="tooltip" data-bs-placement="right" title="Show Full Sidebar">
-            <i class="ri-checkbox-blank-circle-line align-middle"></i>
-        </div>
-
-        <!-- Full Sidebar Menu Close Button -->
+        <!-- Full Sidebar - Btn Cerrar Barra Lateral -->
         <div class="button-close-fullsidebar">
             <i class="ri-close-fill align-middle"></i>
         </div>
 
         <!-- Sidebar -->
         <div class="h-100" id="leftside-menu-container" data-simplebar>
-            <!-- Leftbar User -->
-            <div class="leftbar-user">
-                <a href="pages-profile.html">
-                    <img src="images/users/avatar-1.jpg" alt="user-image" height="42" class="rounded-circle shadow-sm">
-                    <span class="leftbar-user-name mt-2">Usuario</span>
-                </a>
-            </div>
-
             <!--- Sidemenu -->
-            <ul class="side-nav">
+            <ul class="side-nav mb-5">
                 <li class="side-nav-title">Navegación</li>
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#dashboards" aria-expanded="false" aria-controls="dashboards" class="side-nav-link">
-                        <i class="align-middle fas fa-home"></i>
-                        <span> Dashboard </span>
-                        <span class="menu-arrow"></span>
+                    <a th:href="@{/}" class="side-nav-link mt-n2 active">
+                        <i class="mdi mdi-spin mdi-view-dashboard-outline align-middle"></i>
+                        <span> Inicio </span>
                     </a>
-                    <div class="collapse" id="dashboards">
-                        <ul class="side-nav-second-level">
-                            <li class="sidebar-item">
-                                <a id="item-dashboard" class="sidebar-link" th:href="@{/}">
-                                    <i class="fas fa-tachometer-alt me-2"></i>Inicio
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a id="item-general-inventory" class="sidebar-link" th:href="@{/general-inventory/}">
-                                    <i class="fas fa-box me-2"></i>Inventario general
-                                </a>
-                            </li>
-                            <li class="sidebar-item">
-                                <a id="item-quarterly-inventory" class="sidebar-link" th:href="@{/quarterly-inventory/}">
-                                    <i class="fas fa-calendar-alt me-2"></i>Inventario trimestral
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
+                </li>
+                <li class="side-nav-item">
+                    <a th:href="@{/general-inventory}" class="side-nav-link mt-n2 active">
+                        <i class="mdi mdi-archive-outline align-middle"></i>
+                        <span> Inventario general </span>
+                    </a>
+                </li>
+                <li class="side-nav-item">
+                    <a th:href="@{/quarterly-inventory}" class="side-nav-link mt-n2 active">
+                        <i class="mdi mdi-calendar-outline align-middle-2"></i>
+                        <span> Inventario trimestral </span>
+                    </a>
                 </li>
 
                 <li class="side-nav-title">Transacciones</li>
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#purchases" aria-expanded="false" aria-controls="purchases" class="side-nav-link">
-                        <i class="align-middle fas fa-brands fa-shopify"></i>
+                    <a data-bs-toggle="collapse" href="#purchases" aria-expanded="false" aria-controls="purchases" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-shopping-outline align-middle"></i> <!--fas fa-brands fa-shopify-->
                         <span> Compras </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="purchases">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-purchase-new" class="sidebar-link" th:href="@{/purchase-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nueva compra
+                                <a id="item-purchase-new" class="sidebar-link mt-n2" th:href="@{/purchase-new}">
+                                    <i class="mdi mdi-shopping align-middle me-2"></i>Nueva compra
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-purchase-details" class="sidebar-link" th:href="@{/purchase-details/}">
-                                    <i class="fas fa-info-circle me-2"></i>Detalles de compras
+                                <a id="item-purchase-details" class="sidebar-link mt-n1 mb-2" th:href="@{/purchase-details}">
+                                    <i class="mdi mdi-shopping-search align-middle me-2"></i>Detalles de compras
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#sales" aria-expanded="false" aria-controls="sales" class="side-nav-link">
-                        <i class="align-middle fas fa-solid fa-cart-plus"></i>
+                    <a data-bs-toggle="collapse" href="#sales" aria-expanded="false" aria-controls="sales" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-cart-outline align-middle"></i>
                         <span> Ventas </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="sales">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-sale-new" class="sidebar-link" th:href="@{/sale-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nueva venta
+                                <a id="item-sale-new" class="sidebar-link mt-n1 mb-2" th:href="@{/sale-new}">
+                                    <i class="mdi mdi-cart-plus align-middle me-2"></i>Nueva venta
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-sales-details" class="sidebar-link" th:href="@{/sales-details/}">
-                                    <i class="fas fa-info-circle me-2"></i>Detalles de ventas
+                                <a id="item-sales-details" class="sidebar-link mt-n1" th:href="@{/sales-details}">
+                                    <i class="mdi mdi-cart-check align-middle me-2"></i>Detalles de ventas
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
-                <li class="side-nav-title">Mantenimientos</li>
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users" class="side-nav-link">
-                        <i class="align-middle fas fa-solid fa-user-gear"></i>
+                    <a data-bs-toggle="collapse" href="#users" aria-expanded="false" aria-controls="users" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-account-cog-outline align-middle"></i>
                         <span> Usuarios </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="users">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-users" class="sidebar-link" th:href="@{/users/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-user-new" class="sidebar-link mt-n2" th:href="@{/user-new}">
+                                    <i class="mdi mdi-account-plus-outline align-middle me-2"></i>Nuevo usuario
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-user-new" class="sidebar-link" th:href="@{/user-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo usuario
+                                <a id="item-users" class="sidebar-link mt-n1 mb-2" th:href="@{/users}">
+                                    <i class="mdi mdi-account-eye-outline align-middle me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#roles" aria-expanded="false" aria-controls="roles" class="side-nav-link">
-                        <i class="align-middle fas fa-user-tag"></i>
+                    <a data-bs-toggle="collapse" href="#roles" aria-expanded="false" aria-controls="roles" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-account-convert-outline align-middle"></i>
                         <span> Roles </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="roles">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-roles" class="sidebar-link" th:href="@{/roles/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-role-new" class="sidebar-link mt-n2" th:href="@{/role-new}">
+                                    <i class="mdi mdi-account-plus-outline align-middle me-2"></i>Nuevo rol
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-role-new" class="sidebar-link" th:href="@{/role-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo rol
+                                <a id="item-roles" class="sidebar-link mt-n1 mb-2" th:href="@{/roles}">
+                                    <i class="mdi mdi-account-eye-outline align-middle me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#clients" aria-expanded="false" aria-controls="clients" class="side-nav-link">
-                        <i class="align-middle fas fa-user-friends"></i>
+                    <a data-bs-toggle="collapse" href="#clients" aria-expanded="false" aria-controls="clients" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-account-group-outline align-middle"></i>
                         <span> Clientes </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="clients">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-clients" class="sidebar-link" th:href="@{/clients/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-client-new" class="sidebar-link mt-n2" th:href="@{/client-new}">
+                                    <i class="mdi mdi-account-multiple-plus-outline me-2"></i>Nuevo cliente
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-client-new" class="sidebar-link" th:href="@{/client-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo cliente
+                                <a id="item-clients" class="sidebar-link mt-n1 mb-2" th:href="@{/clients}">
+                                    <i class="mdi mdi-account-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#suppliers" aria-expanded="false" aria-controls="suppliers" class="side-nav-link">
-                        <i class="align-middle fas fa-truck"></i>
+                    <a data-bs-toggle="collapse" href="#suppliers" aria-expanded="false" aria-controls="suppliers" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-truck-fast-outline align-middle"></i>
                         <span> Proveedores </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="suppliers">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-suppliers" class="sidebar-link" th:href="@{/suppliers/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-supplier-new" class="sidebar-link mt-n2" th:href="@{/supplier-new}">
+                                    <i class="mdi mdi-truck-delivery-outline me-2"></i>Nuevo proveedor
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-supplier-new" class="sidebar-link" th:href="@{/supplier-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo proveedor
+                                <a id="item-suppliers" class="sidebar-link mt-n1 mb-2" th:href="@{/suppliers}">
+                                    <i class="mdi mdi-truck-check-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#employees" aria-expanded="false" aria-controls="employees" class="side-nav-link">
-                        <i class="align-middle fas fa-users"></i>
+                    <a data-bs-toggle="collapse" href="#employees" aria-expanded="false" aria-controls="employees" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-account-tie-outline align-middle"></i>
                         <span> Empleados </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="employees">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-employees" class="sidebar-link" th:href="@{/employees/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-employee-new" class="sidebar-link mt-n2" th:href="@{/employee-new}">
+                                    <i class="mdi mdi-account-plus-outline me-2"></i>Nuevo empleado
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-employee-new" class="sidebar-link" th:href="@{/employee-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo empleado
+                                <a id="item-employees" class="sidebar-link mt-n1 mb-2" th:href="@{/employees}">
+                                    <i class="mdi mdi-account-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#position" aria-expanded="false" aria-controls="position" class="side-nav-link">
-                        <i class="align-middle fas fa-user-tie"></i>
+                    <a data-bs-toggle="collapse" href="#position" aria-expanded="false" aria-controls="position" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-briefcase-outline align-middle"></i>
                         <span> Cargos empleado </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="position">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-position" class="sidebar-link" th:href="@{/position/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-position-new" class="sidebar-link mt-n2" th:href="@{/position-new}">
+                                    <i class="mdi mdi-briefcase-plus-outline me-2"></i>Nuevo cargo
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-position-new" class="sidebar-link" th:href="@{/position-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo cargo
+                                <a id="item-position" class="sidebar-link mt-n1 mb-2" th:href="@{/position}">
+                                    <i class="mdi mdi-briefcase-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products" class="side-nav-link">
-                        <i class="align-middle fas fa-box-open"></i>
+                    <a data-bs-toggle="collapse" href="#products" aria-expanded="false" aria-controls="products" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-package-variant-closed align-middle"></i>
                         <span> Productos </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="products">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-products" class="sidebar-link" th:href="@{/products/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-product-new" class="sidebar-link mt-n2" th:href="@{/product-new}">
+                                    <i class="mdi mdi-package-up me-2"></i>Nuevo producto
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-product-new" class="sidebar-link" th:href="@{/product-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo producto
+                                <a id="item-products" class="sidebar-link mt-n1 mb-2" th:href="@{/products}">
+                                    <i class="mdi mdi-package-variant me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands" class="side-nav-link">
-                        <i class="align-middle fas fa-tags"></i>
+                    <a data-bs-toggle="collapse" href="#brands" aria-expanded="false" aria-controls="brands" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-tag-multiple-outline align-middle"></i>
                         <span> Marcas </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="brands">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-brands" class="sidebar-link" th:href="@{/brands/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-brand-new" class="sidebar-link mt-n2" th:href="@{/brand-new}">
+                                    <i class="mdi mdi-tag-plus-outline me-2"></i>Nueva marca
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-brand-new" class="sidebar-link" th:href="@{/brand-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nueva marca
+                                <a id="item-brands" class="sidebar-link mt-n1 mb-2" th:href="@{/brands}">
+                                    <i class="mdi mdi-tag-search-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories" class="side-nav-link">
-                        <i class="align-middle fas fa-layer-group"></i>
+                    <a data-bs-toggle="collapse" href="#categories" aria-expanded="false" aria-controls="categories" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-layers-outline align-middle"></i>
                         <span> Categorías </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="categories">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-categories" class="sidebar-link" th:href="@{/categories/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-categorie-new" class="sidebar-link mt-n2" th:href="@{/categorie-new}">
+                                    <i class="mdi mdi-layers-plus me-2"></i>Nueva categoría
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-categorie-new" class="sidebar-link" th:href="@{/categorie-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nueva categoría
+                                <a id="item-categories" class="sidebar-link mt-n1 mb-2" th:href="@{/categories}">
+                                    <i class="mdi mdi-layers-search me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#documentsTypes" aria-expanded="false" aria-controls="documentsTypes" class="side-nav-link">
-                        <i class="align-middle fas fa-users"></i>
+                    <a data-bs-toggle="collapse" href="#documentsTypes" aria-expanded="false" aria-controls="documentsTypes" class="side-nav-link mt-n2">
+                        <i class="mdi mdi-folder-account-outline align-middle"></i>
                         <span> Tipos de documentos </span>
                         <span class="menu-arrow"></span>
                     </a>
                     <div class="collapse" id="documentsTypes">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-documents-types" class="sidebar-link" th:href="@{/documents-types/}">
-                                    <i class="fas fa-list me-2"></i>Listado
+                                <a id="item-document-type-new" class="sidebar-link mt-n2" th:href="@{/document-type-new}">
+                                    <i class="mdi mdi-folder-check-outline me-2"></i>Nuevo tipo de documento
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-document-type-new" class="sidebar-link" th:href="@{/document-type-new/}">
-                                    <i class="fas fa-plus me-2"></i>Nuevo tipo de documento
+                                <a id="item-documents-types" class="sidebar-link mt-n1 mb-2" th:href="@{/documents-types}">
+                                    <i class="mdi mdi-folder-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
                         </ul>
                     </div>
                 </li>
+                <!--Acerca De-->
+                <li class="side-nav-item">
+                    <a th:href="@{/about}" class="side-nav-link mt-n2 active">
+                        <i class="mdi mdi-information-outline align-middle"></i>
+                        <span> Acerca de </span>
+                    </a>
+                </li>
             </ul>
-
             <!--- End Sidemenu -->
             <div class="clearfix"></div>
         </div>

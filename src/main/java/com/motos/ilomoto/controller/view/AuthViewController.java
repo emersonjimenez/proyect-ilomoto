@@ -7,17 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 
 @Controller
-public class PurchaseViewController {
-    @RequestMapping(value = "/purchase-new")
-    public String newPurchase(Model model) {
+public class AuthViewController {
+    /* Direccionar al Inicio */
+    @RequestMapping(value = "/")
+    public String index(Model model){
         initializeSessionAttributes(model);
-        return "purchase/purchase-new";
-    }
-
-    @RequestMapping(value = "/purchase-details")
-    public String detailsPurchase(Model model) {
-        initializeSessionAttributes(model);
-        return "purchase/purchase-details";
+        return "index";
     }
 
     private void initializeSessionAttributes(Model model) {
