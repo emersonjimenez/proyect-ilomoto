@@ -124,27 +124,33 @@ const loadDataForm = async () => {
 const loadTable = async () => {
     try {
         // Destruir DataTable si ya está inicializado
-        if ($.fn.DataTable.isDataTable(SELECTORS.tableBrand)) $(SELECTORS.tableBrand).DataTable().destroy();
+        if ($.fn.DataTable.isDataTable(SELECTORS.tableBrand)) {
+            $(SELECTORS.tableBrand).DataTable().destroy();
+        }
 
         $(SELECTORS.tableBrand).DataTable({
             serverSide: true,
-            ajax: {url: URLS.list, method: METHODS.POST},
+            ajax: {
+                url: URLS.list,
+                method: METHODS.POST
+            },
             columns: [
-                {data: "idBrand"},
-                {data: "name"},
+                {data: "idBrand"}, // Columna 1: ID de la marca
+                {data: "name"},    // Columna 2: Nombre de la marca
                 {
-                    data: null,
+                    data: null,      // Columna 3: Acciones
                     orderable: false,
                     searchTable: false,
-                    render: (data) =>
+                    render: (data) => ( // Renderizar las acciones
                         `<div class="text-center">
                             <button class="btn btn-sm btn-outline-warning btn-update" data-id="${data.idBrand}">
-                                 <i class="mdi mdi-tag-text"></i>
+                                 <i class="mdi mdi-tag-text"></i>Editar
                             </button>
                             <button class="btn btn-sm btn-outline-danger btn-delete" data-id="${data.idBrand}">
-                                <i class="mdi mdi-tag-remove"></i>
+                                <i class="mdi mdi-tag-remove"></i>Eliminar
                             </button>
                         </div>`
+                    )
                 }
             ],
             keys: !0,
@@ -159,15 +165,37 @@ const loadTable = async () => {
                 }
             },
             columnDefs: [
-                {responsivePriority: 1, targets: 0},
-                {responsivePriority: 2, targets: -1}
+                {width: "7%", targets: 0}, // Ancho de la columna 1 (ID)
+                {width: "78%", targets: 1}, // Ancho de la columna 2 (Nombre)
+                {width: "15%", targets: 2}, // Ancho de la columna 3 (Acciones)
+                {responsivePriority: 1, targets: 0}, // Prioridad responsiva para la columna 1
+                {responsivePriority: 2, targets: -1} // Prioridad responsiva para la columna 3
             ],
-            drawCallback: function () {
-                $(".dataTables_paginate > .pagination").addClass("pagination-rounded")
+            drawCallback: () => { // Callback predefinido de DataTables
+                stylePaginationButtons(); // Llamada a la función personalizada
+            },
+            initComplete: () => { // Callback predefinido de DataTables
+                addMarginToLengthMenu(); // Llamada a la función personalizada
             }
         });
     } catch (e) {
         showModalAlert("error", "Error", "Ocurrió un problema con la solicitud. Inténtelo más tarde.")
+    }
+};
+
+// Función para estilizar los botones de paginación
+const stylePaginationButtons = () => {
+    const paginationContainer = document.querySelector(".dataTables_paginate > .pagination");
+    if (paginationContainer) {
+        paginationContainer.classList.add("pagination-rounded");
+    }
+};
+
+// Función para agregar margen inferior al menú de longitud
+const addMarginToLengthMenu = () => {
+    const selectElement = document.querySelector('select[name="tableBrand_length"]');
+    if (selectElement) {
+        selectElement.classList.add('mb-1');
     }
 };
 
