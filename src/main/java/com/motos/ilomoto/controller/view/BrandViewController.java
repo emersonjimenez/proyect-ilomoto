@@ -7,17 +7,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.time.LocalDate;
 
 @Controller
-public class PurchaseViewController {
-    @RequestMapping(value = "/new-purchase")
-    public String newPurchase(Model model) {
+public class BrandViewController {
+    @RequestMapping(value = "/brands")
+    public String brands(Model model) {
         initializeSessionAttributes(model);
-        return "purchase/new-purchase";
+        return "/brand/brands";
     }
 
-    @RequestMapping(value = "/purchase-details")
-    public String detailsPurchase(Model model) {
+    @RequestMapping(value = "/new-brand")
+    public String newBrand(Model model) {
         initializeSessionAttributes(model);
-        return "purchase/purchase-details";
+        return "/brand/new-brand";
+    }
+
+    @RequestMapping(value = "/update-brand/{id}")
+    public String updateBrand(Model model) {
+        initializeSessionAttributes(model);
+        return "/brand/update-brand";
     }
 
     private void initializeSessionAttributes(Model model) {

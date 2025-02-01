@@ -10,7 +10,7 @@
     <!-- App favicon -->
     <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
 
-    <!-- Daterangepicker css -->
+    <!-- DateRangePicker css -->
     <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet" type="text/css">
 
     <!-- Vector Map css -->
@@ -47,6 +47,7 @@
         <div class="content-page">
             <!-- Start Content-->
             <div class="content">
+                <input type="hidden" id="paginaActual" name="paginaActual" value="new-purchase">
                 <div class="container-fluid"></div>
             </div>
             <!-- End Content -->
@@ -67,7 +68,7 @@
     <!-- Vendor js -->
     <script th:src="@{/js/vendor.min.js}"></script>
 
-    <!-- Daterangepicker js -->
+    <!-- DateRangePicker js -->
     <script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
     <script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
 
@@ -79,8 +80,11 @@
     <script th:src="@{/vendor/jsvectormap/maps/world-merc.js}"></script>
     <script th:src="@{/vendor/jsvectormap/maps/world.js}"></script>
 
+    <!-- SweetAlert2 js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <!-- App js -->
     <script th:src="@{/js/app.min.js}"></script>
-    <script src="https://kit.fontawesome.com/456ce2e538.js" crossorigin="anonymous"></script>
+    <script th:src="@{/js/jsMenu.js}"></script>
 </body>
 </html>

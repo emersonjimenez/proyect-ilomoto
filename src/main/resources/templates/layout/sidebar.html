@@ -51,13 +51,13 @@
                     <div class="collapse" id="purchases">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-purchase-new" class="sidebar-link mt-n2" th:href="@{/purchase-new}">
+                                <a id="item-new-purchase" class="sidebar-link mt-n2" th:href="@{/new-purchase}">
                                     <i class="mdi mdi-shopping align-middle me-2"></i>Nueva compra
                                 </a>
                             </li>
                             <li class="sidebar-item">
                                 <a id="item-purchase-details" class="sidebar-link mt-n1 mb-2" th:href="@{/purchase-details}">
-                                    <i class="mdi mdi-shopping-search align-middle me-2"></i>Detalles de compras
+                                    <i class="mdi mdi-shopping-search align-middle me-2"></i>Detalles de compra
                                 </a>
                             </li>
                         </ul>
@@ -72,13 +72,13 @@
                     <div class="collapse" id="sales">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-sale-new" class="sidebar-link mt-n1 mb-2" th:href="@{/sale-new}">
+                                <a id="item-new-sale" class="sidebar-link mt-n1 mb-2" th:href="@{/new-sale}">
                                     <i class="mdi mdi-cart-plus align-middle me-2"></i>Nueva venta
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-sales-details" class="sidebar-link mt-n1" th:href="@{/sales-details}">
-                                    <i class="mdi mdi-cart-check align-middle me-2"></i>Detalles de ventas
+                                <a id="item-sale-details" class="sidebar-link mt-n1" th:href="@{/sale-details}">
+                                    <i class="mdi mdi-cart-check align-middle me-2"></i>Detalles de venta
                                 </a>
                             </li>
                         </ul>
@@ -95,7 +95,7 @@
                     <div class="collapse" id="users">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-user-new" class="sidebar-link mt-n2" th:href="@{/user-new}">
+                                <a id="item-new-user" class="sidebar-link mt-n2" th:href="@{/new-user}">
                                     <i class="mdi mdi-account-plus-outline align-middle me-2"></i>Nuevo usuario
                                 </a>
                             </li>
@@ -116,7 +116,7 @@
                     <div class="collapse" id="roles">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-role-new" class="sidebar-link mt-n2" th:href="@{/role-new}">
+                                <a id="item-new-role" class="sidebar-link mt-n2" th:href="@{/new-role}">
                                     <i class="mdi mdi-account-plus-outline align-middle me-2"></i>Nuevo rol
                                 </a>
                             </li>
@@ -130,20 +130,20 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#clients" aria-expanded="false" aria-controls="clients" class="side-nav-link mt-n2">
+                    <a data-bs-toggle="collapse" href="#customers" aria-expanded="false" aria-controls="customers" class="side-nav-link mt-n2">
                         <i class="mdi mdi-account-group-outline align-middle"></i>
                         <span> Clientes </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="clients">
+                    <div class="collapse" id="customers">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-client-new" class="sidebar-link mt-n2" th:href="@{/client-new}">
+                                <a id="item-new-customer" class="sidebar-link mt-n2" th:href="@{/new-customer}">
                                     <i class="mdi mdi-account-multiple-plus-outline me-2"></i>Nuevo cliente
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-clients" class="sidebar-link mt-n1 mb-2" th:href="@{/clients}">
+                                <a id="item-customers" class="sidebar-link mt-n1 mb-2" th:href="@{/customers}">
                                     <i class="mdi mdi-account-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
@@ -160,7 +160,7 @@
                     <div class="collapse" id="suppliers">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-supplier-new" class="sidebar-link mt-n2" th:href="@{/supplier-new}">
+                                <a id="item-new-supplier" class="sidebar-link mt-n2" th:href="@{/new-supplier}">
                                     <i class="mdi mdi-truck-delivery-outline me-2"></i>Nuevo proveedor
                                 </a>
                             </li>
@@ -182,7 +182,7 @@
                     <div class="collapse" id="employees">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-employee-new" class="sidebar-link mt-n2" th:href="@{/employee-new}">
+                                <a id="item-new-employee" class="sidebar-link mt-n2" th:href="@{/new-employee}">
                                     <i class="mdi mdi-account-plus-outline me-2"></i>Nuevo empleado
                                 </a>
                             </li>
@@ -196,20 +196,20 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#position" aria-expanded="false" aria-controls="position" class="side-nav-link mt-n2">
+                    <a data-bs-toggle="collapse" href="#employee-positions" aria-expanded="false" aria-controls="employee-positions" class="side-nav-link mt-n2">
                         <i class="mdi mdi-briefcase-outline align-middle"></i>
                         <span> Cargos empleado </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="position">
+                    <div class="collapse" id="employee-positions">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-position-new" class="sidebar-link mt-n2" th:href="@{/position-new}">
+                                <a id="item-new-employee-position" class="sidebar-link mt-n2" th:href="@{/new-employee-position}">
                                     <i class="mdi mdi-briefcase-plus-outline me-2"></i>Nuevo cargo
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-position" class="sidebar-link mt-n1 mb-2" th:href="@{/position}">
+                                <a id="item-employee-positions" class="sidebar-link mt-n1 mb-2" th:href="@{/employee-positions}">
                                     <i class="mdi mdi-briefcase-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
@@ -226,7 +226,7 @@
                     <div class="collapse" id="products">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-product-new" class="sidebar-link mt-n2" th:href="@{/product-new}">
+                                <a id="item-new-product" class="sidebar-link mt-n2" th:href="@{/new-product}">
                                     <i class="mdi mdi-package-up me-2"></i>Nuevo producto
                                 </a>
                             </li>
@@ -248,7 +248,7 @@
                     <div class="collapse" id="brands">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-brand-new" class="sidebar-link mt-n2" th:href="@{/brand-new}">
+                                <a id="item-new-brand" class="sidebar-link mt-n2" th:href="@{/new-brand}">
                                     <i class="mdi mdi-tag-plus-outline me-2"></i>Nueva marca
                                 </a>
                             </li>
@@ -270,7 +270,7 @@
                     <div class="collapse" id="categories">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-categorie-new" class="sidebar-link mt-n2" th:href="@{/categorie-new}">
+                                <a id="item-new-category" class="sidebar-link mt-n2" th:href="@{/new-category}">
                                     <i class="mdi mdi-layers-plus me-2"></i>Nueva categoría
                                 </a>
                             </li>
@@ -284,20 +284,20 @@
                 </li>
 
                 <li class="side-nav-item">
-                    <a data-bs-toggle="collapse" href="#documentsTypes" aria-expanded="false" aria-controls="documentsTypes" class="side-nav-link mt-n2">
+                    <a data-bs-toggle="collapse" href="#document-types" aria-expanded="false" aria-controls="document-types" class="side-nav-link mt-n2">
                         <i class="mdi mdi-folder-account-outline align-middle"></i>
                         <span> Tipos de documentos </span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <div class="collapse" id="documentsTypes">
+                    <div class="collapse" id="document-types">
                         <ul class="side-nav-second-level">
                             <li class="sidebar-item">
-                                <a id="item-document-type-new" class="sidebar-link mt-n2" th:href="@{/document-type-new}">
+                                <a id="item-new-document-type" class="sidebar-link mt-n2" th:href="@{/new-document-type}">
                                     <i class="mdi mdi-folder-check-outline me-2"></i>Nuevo tipo de documento
                                 </a>
                             </li>
                             <li class="sidebar-item">
-                                <a id="item-documents-types" class="sidebar-link mt-n1 mb-2" th:href="@{/documents-types}">
+                                <a id="item-document-types" class="sidebar-link mt-n1 mb-2" th:href="@{/document-types}">
                                     <i class="mdi mdi-folder-eye-outline me-2"></i>Listado
                                 </a>
                             </li>
