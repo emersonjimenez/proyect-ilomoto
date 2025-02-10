@@ -4,7 +4,9 @@ import com.motos.ilomoto.common.exception.BrandException;
 import com.motos.ilomoto.common.util.constant.BrandConstant;
 import com.motos.ilomoto.model.dto.dto.APIResponse;
 import com.motos.ilomoto.model.dto.dto.BrandDto;
+import com.motos.ilomoto.model.dto.dto.DataTableDTO;
 import com.motos.ilomoto.model.dto.request.BrandRequest;
+import com.motos.ilomoto.model.dto.request.DataTableRequest;
 import com.motos.ilomoto.model.entity.Brand;
 import com.motos.ilomoto.model.mapper.dto.BrandDtoMapper;
 import com.motos.ilomoto.model.mapper.request.BrandRequestMapper;
@@ -15,65 +17,61 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.Map;
-
-@Service
 @RequiredArgsConstructor
 @Transactional(
         isolation = Isolation.READ_COMMITTED, /* Evita leer datos no confirmados. */
         rollbackFor = Exception.class /* Realiza rollback para cualquier excepción. */
 )
+@Service
 public class BrandServiceImpl implements IBrandService {
     private final BrandRepository brandRepository;
     private final BrandRequestMapper brandRequestMapper;
     private final BrandDtoMapper brandDtoMapper;
 
     @Override
-    @Transactional(readOnly = true)/* Transacción solo para lecturas */
-    public ResponseEntity<Map<String, Object>> findAllBrands(long offset, long pageSize, String searchQuery, long sortColum, String sortDirection, long requestId) {
-        Map<String, Object> response = new HashMap<>();
-
+    @Transactional(readOnly = true) /* Transacción solo para lecturas */
+    public APIResponse<DataTableDTO<Brand>> getBrandsPage(DataTableRequest request) {
         // Ordenar por la columna especificada
-        var sort = Sort.by(
-                sortDirection.equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
-                mapIndexToColumnName(sortColum)
+        Sort sort = Sort.by(
+                request.getOrderDir().equals("asc") ? Sort.Direction.ASC : Sort.Direction.DESC,
+                mapIndexToColumnName(request.getOrderColumn())
         );
 
         // Configuración de la paginación
-        var currentPage = offset / pageSize;
-        PageRequest pageRequest = PageRequest.of((int) currentPage, (int) pageSize, sort);
+        int currentPage = request.getStart() / request.getLength();
+        PageRequest pageRequest = PageRequest.of(currentPage, request.getLength(), sort);
 
         // Almacenará la paginación de marcas
         Page<Brand> brandsPage;
 
         // Filtrar si hay valor de búsqueda
-        if (searchQuery != null && !searchQuery.isEmpty()) {
-            brandsPage = brandRepository.findByNameContainingIgnoreCase(searchQuery, pageRequest);
+        if (request.getSearchValue() != null && !request.getSearchValue().isEmpty()) {
+            brandsPage = brandRepository.findByNameContainingIgnoreCase(request.getSearchValue(), pageRequest);
         } else {
             brandsPage = brandRepository.findAll(pageRequest);
         }
 
-        // Configuración para DataTables
-        response.put("recordsTotal", brandsPage.getTotalElements());
-        response.put("recordsFiltered", brandsPage.getTotalElements());
-        response.put("data", brandsPage.getContent());
-        response.put("draw", requestId);
-        response.put("message", BrandConstant.BRAND_LIST_SUCCESS);
+        // Crear el DTO de DataTable
+        DataTableDTO<Brand> dataTableDTO = new DataTableDTO<>(
+                brandsPage.getTotalElements(),
+                brandsPage.getTotalElements(),
+                brandsPage.getContent(),
+                request.getDraw()
+        );
 
-        return ResponseEntity.ok(response);
+        // Devolver el APIResponse con el DataTableDTO
+        return new APIResponse<>(dataTableDTO, BrandConstant.BRAND_LIST_SUCCESS, HttpStatus.OK);
     }
 
     @Override
     public APIResponse<BrandDto> createBrand(BrandRequest brandRequest) {
         // Validar si la marca ya existe
-        var existingBrand = brandRepository.findByName(brandRequest.getName());
+        Brand existingBrand = brandRepository.findByName(brandRequest.getName());
         if (existingBrand != null) {
             throw new BrandException(
                     HttpStatus.CONFLICT,
@@ -81,24 +79,27 @@ public class BrandServiceImpl implements IBrandService {
             );
         }
 
-        // Crear una nueva marca
-        var newBrand = brandRequestMapper.brandRequestToBrand(brandRequest);
-        var savedBrand = brandRepository.save(newBrand);
+        // Setter la marca existente usando el mapper
+        Brand brand = brandRequestMapper.toEntity(brandRequest);
+
+        // Guardar una nueva marca
+        brandRepository.save(brand);
 
         // Respuesta de éxito
-        return new APIResponse<>(
-                brandDtoMapper.brandToBrandDto(savedBrand),
-                String.format(BrandConstant.BRAND_CREATION_SUCCESS, savedBrand.getName()),
+        return new APIResponse<>(null,
+                String.format(BrandConstant.BRAND_CREATION_SUCCESS, brand.getName()),
                 HttpStatus.CREATED
         );
     }
 
     @Override
     @Transactional(readOnly = true)
-    public APIResponse<BrandDto> findBrandById(long id) {
-        var brand = this.fetchById(id);
+    public APIResponse<BrandDto> getBrandById(long id) {
+        Brand brand = this.fetchById(id);
+
+        //Respuesta de éxito
         return new APIResponse<>(
-                brandDtoMapper.brandToBrandDto(brand),
+                brandDtoMapper.toDto(brand),
                 String.format(BrandConstant.BRAND_RETRIEVAL_SUCCESS, id),
                 HttpStatus.OK
         );
@@ -107,47 +108,52 @@ public class BrandServiceImpl implements IBrandService {
     @Override
     public APIResponse<BrandDto> updateBrand(BrandRequest brandRequest, long id) {
         // Obtener la marca existente
-        var brand = this.fetchById(id);
+        Brand existingBrand = this.fetchById(id);
+        String brandName = existingBrand.getName();
 
-        // Validar si la marca ya existe
-        var existingBrand = brandRepository.findByName(brandRequest.getName());
-
-        if (existingBrand != null && id != existingBrand.getIdBrand()) {
+        // Verificar si el nombre ya existe en otra marca
+        if (brandRepository.existsByNameAndIdBrandNot(brandRequest.getName(), id)) {
             throw new BrandException(
                     HttpStatus.CONFLICT,
-                    String.format(BrandConstant.BRAND_UPDATE_CONFLICT, id)
+                    String.format(BrandConstant.BRAND_UPDATE_CONFLICT, brandRequest.getName())
             );
         }
 
-        // Actualizar la marca
-        setValuesBrand(brandRequest, brand);
-        var savedBrand = brandRepository.save(brand);
+        // Setter la marca existente usando el mapper
+        Brand brand = brandRequestMapper.toEntity(brandRequest);
+        brand.setIdBrand(id);
+
+        // Guardar la marca actualizada
+        brandRepository.save(brand);
 
         // Respuesta de éxito
         return new APIResponse<>(
-                brandDtoMapper.brandToBrandDto(savedBrand),
-                String.format(BrandConstant.BRAND_UPDATE_SUCCESS, savedBrand.getName()),
+                null,
+                String.format(BrandConstant.BRAND_UPDATE_SUCCESS, brandName),
                 HttpStatus.OK
         );
     }
 
     @Override
     public APIResponse<BrandDto> deleteBrand(long id) {
-        var brand = this.fetchById(id);
+        // Obtener la marca existente
+        Brand brand = this.fetchById(id);
 
         /* Verificar si el cliente tiene ventas asociadas.
         if (brandRepository.existsProductByBrandId(id)) {
             throw new BrandException(
                     HttpStatus.CONFLICT,
-                    String.format(BrandConstant.BRAND_DELETE_CONFLICT, id)
+                    String.format(BrandConstant.BRAND_DELETE_CONFLICT, brand.getName())
             );
         }*/
 
+        // Eliminar la marca
         brandRepository.delete(brand);
 
+        // Respuesta de éxito
         return new APIResponse<>(
                 null,
-                String.format(BrandConstant.BRAND_DELETE_SUCCESS, id),
+                String.format(BrandConstant.BRAND_DELETE_SUCCESS, brand.getName()),
                 HttpStatus.OK
         );
     }
@@ -163,15 +169,10 @@ public class BrandServiceImpl implements IBrandService {
     }
 
     /* Obtener el nombre de la columna basado en el índice */
-    private String mapIndexToColumnName(long id) {
-        return switch ((int) id) {
+    private String mapIndexToColumnName(int id) {
+        return switch (id) {
             case 1 -> "name";
             default -> "idBrand"; // 0
         };
-    }
-
-    /* Actualizar atributos de la marca */
-    private void setValuesBrand(BrandRequest brandRequest, Brand brand) {
-        brand.setName(brandRequest.getName());
     }
 }

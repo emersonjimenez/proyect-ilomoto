@@ -17,7 +17,7 @@
     <link th:href="@{/vendor/jsvectormap/jsvectormap.min.css}" rel="stylesheet" type="text/css">
 
     <!-- Theme Config Js -->
-    <script th:src="@{/js/hyper-config.js}"></script>
+    <script th:src="@{/js/config/hyper-config.js}"></script>
 
     <!-- Vendor css -->
     <link th:href="@{/css/vendor.min.css}" rel="stylesheet" type="text/css"/>
@@ -77,13 +77,13 @@
                             <div class="page-title-box">
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
-                                        <li class="breadcrumb-item"><a th:href="@{/}">Dashboard</a></li>
-                                        <li class="breadcrumb-item"><a th:href="@{/brands}">Marca</a></li>
+                                        <li class="breadcrumb-item"><a th:href="@{/}"><i class="mdi mdi-view-dashboard-outline me-1"></i>Inicio</a></li>
+                                        <li class="breadcrumb-item"><a th:href="@{/brands}"><i class="mdi mdi-tag-multiple-outline me-1"></i>Marca</a></li>
                                         <li class="breadcrumb-item active" aria-current="page">Actualizar</li>
                                     </ol>
                                 </div>
                                 <h4 class="page-title">
-                                    <i class="mdi mdi-tag-search me-2"></i>Actualizar marca
+                                    <i class="mdi mdi-fountain-pen-tip me-1"></i>Actualizar marca
                                 </h4>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
     <!-- END wrapper -->
 
     <!-- Vendor js -->
-    <script th:src="@{/js/vendor.min.js}"></script>
+    <script th:src="@{/js/vendor/vendor.min.js}"></script>
 
     <!-- DateRangePicker js -->
     <script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
@@ -168,9 +168,12 @@
     <!-- SweetAlert2 js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!---API Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- App js -->
-    <script th:src="@{/js/app.min.js}"></script>
-    <script th:src="@{/js/jsMenu.js}"></script>
-    <script th:src="@{/js/jsBrand.js}"></script>
+    <script th:src="@{/js/modules/app.min.js}"></script>
+    <script th:src="@{/js/pages/jsMenu.js}"></script>
+    <script type="module" th:src="@{/js/pages/jsBrand.js}"></script>
 </body>
 </html>

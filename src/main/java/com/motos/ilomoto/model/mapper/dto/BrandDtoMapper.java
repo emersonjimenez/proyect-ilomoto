@@ -9,7 +9,5 @@ import org.mapstruct.Mapping;
 public interface BrandDtoMapper {
 
     /* Mapeo de campos de Marca a MarcaDto */
-    @Mapping(source = "idBrand", target = "idBrand")
-    @Mapping(source = "name", target = "name")
-    BrandDto brandToBrandDto(Brand brand); /* Se utiliza para responder al FrontEnd */
+    BrandDto toDto(Brand brand); /* Se utiliza para responder al FrontEnd */
 }

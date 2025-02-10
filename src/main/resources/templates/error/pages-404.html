@@ -1,10 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html lang="es">
 
+<head>
+    <meta charset="utf-8" />
+    <title>Error 404 - Página no encontrada</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Página no encontrada" name="description" />
+    <meta content="Ilomoto" name="author" />
+
+    <!-- Icono del sitio -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+
+    <!-- Configuración del tema -->
+    <script th:src="@{/js/config/hyper-config.js}"></script>
+
+    <!-- CSS -->
+    <link th:href="@{/css/vendor.min.css}" rel="stylesheet" />
+    <link th:href="@{/css/app-saas.min.css}" rel="stylesheet" id="app-style" />
+    <link th:href="@{/css/icons.min.css}" rel="stylesheet" />
+</head>
+<body class="authentication-bg">
+    <div class="position-absolute start-0 end-0 start-0 bottom-0 w-100 h-100">
+        <svg xmlns='http://www.w3.org/2000/svg' width='100%' height='100%' viewBox='0 0 800 800'>
+            <g fill-opacity='0.22'>
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.1);" cx='400' cy='400' r='600' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.2);" cx='400' cy='400' r='500' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.3);" cx='400' cy='400' r='300' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.4);" cx='400' cy='400' r='200' />
+                <circle style="fill: rgba(var(--ct-primary-rgb), 0.5);" cx='400' cy='400' r='100' />
+            </g>
+        </svg>
+    </div>
+
+    <div class="account-pages pt-2 pt-sm-5 pb-4 pb-sm-5 position-relative">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-xxl-4 col-lg-5">
+                    <div class="card">
+                        <!-- Logo -->
+                        <div class="card-header py-1 text-center bg-primary">
+                            <a th:href="@{/}">
+                                <span>
+                                    <img th:src="@{/images/logo-ilomoto.png}" alt="logo" width="100" height="110">
+                                </span>
+                            </a>
+                        </div>
+                        <div class="card-body text-center">
+                            <h1 class="text-error mt-n2">4<i class="mdi mdi-emoticon-sad"></i>4</h1>
+                            <h4 class="text-uppercase text-danger mt-2">Página no encontrada</h4>
+                            <p class="text-muted mt-2">
+                                La página que buscas no está disponible o ha sido movida.
+                                Usa el botón a continuación para regresar al inicio.
+                            </p>
+                            <a class="btn btn-info mt-1 mb-2" th:href="@{/}">
+                                <i class="mdi mdi-reply"></i> Regresar al inicio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer th:fragment="footer-content" class="footer">
+        <div class="container-fluid">
+            <div class="row text-muted">
+                <div class="col-12 text-center text-sm-center">
+                    <p class="mb-0 text-600">
+                        Todos los derechos reservados &copy;
+                        <span id="year"></span> | Ilomoto
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script th:src="@{/js/vendor/vendor.min.js}"></script>
+    <script th:src="@{/js/modules/app.min.js}"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("year").textContent = new Date().getFullYear();
+        });
+    </script>
 </body>
 </html>

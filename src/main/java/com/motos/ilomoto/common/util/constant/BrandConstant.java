@@ -12,12 +12,12 @@ public class BrandConstant {
     public static final String BRAND_CREATION_CONFLICT = "No se pudo crear la marca con el nombre %s porque ya existe.";
 
     // Mensajes relacionados con la operación ACTUALIZAR (Update)
-    public static final String BRAND_UPDATE_SUCCESS = "La marca con el identificador %s se actualizó correctamente.";
-    public static final String BRAND_UPDATE_CONFLICT = "No se pudo actualizar la marca con el identificador %s debido a un conflicto de datos.";
+    public static final String BRAND_UPDATE_SUCCESS = "La marca %s se actualizó correctamente.";
+    public static final String BRAND_UPDATE_CONFLICT = "No se actualizo la marca con el nombre %s porque ya existe.";
 
     // Mensajes relacionados con la operación ELIMINAR (Delete)
-    public static final String BRAND_DELETE_SUCCESS = "La marca con el identificador %s se eliminó correctamente.";
-    public static final String BRAND_DELETE_CONFLICT = "No se puede eliminar la marca con el identificador %s porque está relacionado con otros elementos.";
+    public static final String BRAND_DELETE_SUCCESS = "La marca %s se eliminó correctamente.";
+    public static final String BRAND_DELETE_CONFLICT = "No se puede eliminar la marca %s porque está relacionado con otros elementos.";
 
     // Mensajes relacionados con errores generales y validaciones
 }
