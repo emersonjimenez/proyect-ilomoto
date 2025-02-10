@@ -15,6 +15,12 @@ public class AuthViewController {
         return "index";
     }
 
+    @RequestMapping(value = "/error/pages-500")
+    public String page500(Model model){
+        initializeSessionAttributes(model);
+        return "error/pages-500";
+    }
+
     private void initializeSessionAttributes(Model model) {
         // Añadir atributos al modelo
         model.addAttribute("username", "Usuario");
