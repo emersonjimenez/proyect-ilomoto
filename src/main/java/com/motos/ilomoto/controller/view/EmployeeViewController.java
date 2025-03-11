@@ -2,29 +2,28 @@ package com.motos.ilomoto.controller.view;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.time.LocalDate;
 
 @Controller
-public class AuthViewController {
-    /* Direccionar al Inicio */
-    @RequestMapping(value = "/")
-    public String index(Model model){
+public class EmployeeViewController {
+    @RequestMapping(value = "/employees")
+    public String employees(Model model) {
         initializeSessionAttributes(model);
-        return "index";
-    }
-    /* Direccionar al apartado Login */
-    @GetMapping("/authentication/login")
-    public String login() {
-        return "authentication/login";
+        return "/employee/employees";
     }
 
-    @RequestMapping(value = "/error/pages-500")
-    public String page500(Model model){
+    @RequestMapping(value = "/new-employee")
+    public String newEmployee(Model model) {
         initializeSessionAttributes(model);
-        return "error/pages-500";
+        return "/employee/new-employee";
+    }
+
+    @RequestMapping(value = "/update-employee/{id}")
+    public String updateEmployee(Model model) {
+        initializeSessionAttributes(model);
+        return "/employee/update-employee";
     }
 
     private void initializeSessionAttributes(Model model) {

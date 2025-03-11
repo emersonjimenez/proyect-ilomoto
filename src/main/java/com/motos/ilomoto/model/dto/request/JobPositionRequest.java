@@ -5,6 +5,6 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandRequest {
+public class JobPositionRequest {
     private String name;
 }

@@ -5,7 +5,7 @@ import lombok.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BrandDto {
-    private Long idBrand;
+public class JobPositionDto {
+    private Long idPosition;
     private String name;
 }

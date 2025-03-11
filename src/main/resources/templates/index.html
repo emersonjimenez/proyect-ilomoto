@@ -49,6 +49,12 @@
             <div th:include="layout/introduction::content-content" class="content"></div>
             <!-- End Content -->
 
+            <!-- Modal Backup -->
+            <div th:include="layout/backupModal::backup-modal"></div>
+
+            <!-- Modal Restore Backup -->
+            <div th:include="layout/restoreBackupModal::restore-backup-modal"></div>
+
             <!-- Modal Logout -->
             <div th:include="layout/logoutModal::logout-modal"></div>
 
@@ -80,8 +86,12 @@
     <!-- SweetAlert2 js -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <!---API Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
     <!-- App js -->
     <script th:src="@{/js/modules/app.min.js}"></script>
     <script th:src="@{/js/pages/jsMenu.js}"></script>
+    <script type="module" th:src="@{/js/pages/jsBackup.js}"></script>
 </body>
 </html>

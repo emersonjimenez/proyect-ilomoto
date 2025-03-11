@@ -13,5 +13,5 @@ public interface IBrandService {
     APIResponse<BrandDto> getBrandById(long id);
     APIResponse<BrandDto> updateBrand(BrandRequest brandRequest, long id);
     APIResponse<BrandDto> deleteBrand(long id);
-    Brand fetchById(long id);
+    Brand findBrandByIdOrThrow(long id);
 }

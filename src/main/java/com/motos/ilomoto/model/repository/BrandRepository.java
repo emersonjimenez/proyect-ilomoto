@@ -20,8 +20,8 @@ public interface BrandRepository extends JpaRepository<Brand, Long> {
     // Buscar si existe por nombre e identificador no igual
     boolean existsByNameAndIdBrandNot(String name, long idBrand);
 
-    /* Buscar si el cliente tiene ventas asociadas
+    /* Buscar si la marca tiene productos asociados
        @Query("SELECT COUNT(p) > 0 FROM Product p WHERE p.idBrand.idBrand = :idBrand")
        boolean existsProductByBrandId(@Param("idBrand") Long idBrand);
-     */
+    */
 }

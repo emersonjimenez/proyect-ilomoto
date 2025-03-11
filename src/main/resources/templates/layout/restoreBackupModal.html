@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+    <!-- Modal Restauración Backup -->
+    <div th:fragment="restore-backup-modal">
+        <div class="modal fade" id="restoreBackupModal" tabindex="-1" role="dialog" aria-labelledby="restoreBackupModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <!-- Modal Header -->
+                    <div class="modal-header bg-primary text-white">
+                        <h5 class="modal-title" id="restoreBackupModalLabel">
+                            <i class="mdi mdi-database-import me-2"></i> Confirmar Restauración
+                        </h5>
+                        <button type="button" class="btn-close text-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                    </div>
+
+                    <!-- Modal Body -->
+                    <div class="modal-body text-center">
+                        <p class="mb-2">
+                            <i class="mdi mdi-help-circle-outline mb-2 fs-3 text-warning"></i><br>
+                            <strong>¿Está seguro de que desea realizar la restauración de los datos?</strong>
+                        </p>
+                        <div class="mb-2">
+                            <select id="selectRestoreBackup" name="selectRestoreBackup" class="form-select">
+                                <option value="" disabled selected>Seleccione un backup</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer d-flex justify-content-center">
+                        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">
+                            <i class="mdi mdi-close"></i> Cancelar
+                        </button>
+                        <button id="btnRestoreBackup" class="btn btn-primary btn-sm">
+                            <i class="mdi mdi-database-import-outline"></i> Iniciar restauración
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
