@@ -1,6 +1,6 @@
 package com.motos.ilomoto.controller.advice;
 
-import com.motos.ilomoto.common.exception.BrandException;
+import com.motos.ilomoto.common.exception.*;
 import jakarta.servlet.ServletException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +36,34 @@ public class ControllerAdviceGlobal {
 
     @ExceptionHandler(BrandException.class)
     public ResponseEntity<Map<String,String>> handleBrandException(BrandException ex) {
+        Map<String,String> response = new HashMap<>();
+        response.put("message", ex.getErrorMessage());  /* { message: ? } */
+        return ResponseEntity.status(ex.getErrorStatus()).body(response);
+    }
+
+    @ExceptionHandler(EmployeeException.class)
+    public ResponseEntity<Map<String,String>> handleEmployeeException(EmployeeException ex) {
+        Map<String,String> response = new HashMap<>();
+        response.put("message", ex.getErrorMessage());  /* { message: ? } */
+        return ResponseEntity.status(ex.getErrorStatus()).body(response);
+    }
+
+    @ExceptionHandler(DocumentTypeException.class)
+    public ResponseEntity<Map<String,String>> handleDocumentTypeException(DocumentTypeException ex) {
+        Map<String,String> response = new HashMap<>();
+        response.put("message", ex.getErrorMessage());  /* { message: ? } */
+        return ResponseEntity.status(ex.getErrorStatus()).body(response);
+    }
+
+    @ExceptionHandler(JobPositionException.class)
+    public ResponseEntity<Map<String,String>> handleJobPositionException(JobPositionException ex) {
+        Map<String,String> response = new HashMap<>();
+        response.put("message", ex.getErrorMessage());  /* { message: ? } */
+        return ResponseEntity.status(ex.getErrorStatus()).body(response);
+    }
+
+    @ExceptionHandler(BackupException.class)
+    public ResponseEntity<Map<String,String>> handleBackupException(BackupException ex) {
         Map<String,String> response = new HashMap<>();
         response.put("message", ex.getErrorMessage());  /* { message: ? } */
         return ResponseEntity.status(ex.getErrorStatus()).body(response);

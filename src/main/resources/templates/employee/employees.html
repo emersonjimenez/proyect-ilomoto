@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sidenav-size="fullscreen">
+<html lang="en" data-sidenav-size="fullscreen" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
     <title>Ilomoto</title>
@@ -32,7 +32,7 @@
     <link th:href="@{/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
     <link th:href="@{/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
 </head>
-<body id="updateBrandPage">
+<body id="employeesPage">
     <!-- Begin page -->
     <div class="wrapper">
 
@@ -50,7 +50,7 @@
         <div class="content-page">
             <!-- Start Content-->
             <div class="content">
-                <input type="hidden" id="paginaActual" name="paginaActual" value="brands">
+                <input type="hidden" id="paginaActual" name="paginaActual" value="employees">
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-12">
@@ -58,57 +58,51 @@
                                 <div class="page-title-right">
                                     <ol class="breadcrumb m-0">
                                         <li class="breadcrumb-item"><a th:href="@{/}"><i class="mdi mdi-view-dashboard-outline me-1"></i>Inicio</a></li>
-                                        <li class="breadcrumb-item"><a th:href="@{/brands}"><i class="mdi mdi-tag-multiple-outline me-1"></i>Marca</a></li>
-                                        <li class="breadcrumb-item active" aria-current="page">Actualizar</li>
+                                        <li class="breadcrumb-item"><a th:href="@{/employees}"><i class="mdi mdi-tag-multiple-outline me-1"></i>Empleado</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Lista</li>
                                     </ol>
                                 </div>
                                 <h4 class="page-title">
-                                    <i class="mdi mdi-fountain-pen-tip me-1"></i>Actualizar marca
+                                    <i class="mdi mdi-table-of-contents me-1"></i>Lista de empleados
                                 </h4>
                             </div>
                         </div>
                     </div>
-                    <div class="row mt-n2 d-flex justify-content-center align-items-center">
-                        <div class="col-xxl-12 d-flex justify-content-center">
-                            <div class="card w-75 h-100">
-                                <div class="card-body mt-n2">
-                                    <div class="col col-12 mb-2 mt-2">
-                                        <h4 class="card-title mb-0">
-                                            <i class="mdi mdi-file-document-edit"></i> Información
-                                        </h4>
+                    <div class="row mt-n3">
+                        <div class="col-xxl-12">
+                            <div class="card">
+                                <div class="card-header mt-2">
+                                    <div class="row g-0 justify-content-md-start">
+                                        <!-- Botones de Agregar y Exportar -->
+                                        <div class="col-12 col-md-4 col-xl-4 d-flex justify-content-center justify-content-md-start">
+                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/new-employee}">
+                                                <i class="mdi mdi-plus-thick me-1"></i>Agregar<!-- Icono Add -->
+                                            </a>
+                                        </div>
                                     </div>
-                                    <form name="formUpdate" id="formUpdate">
-                                        <div class="row g-2">
-                                            <div class="col-md-2"></div>
-                                            <!-- ID -->
-                                            <input type="hidden" class="form-control" id="idBrand" name="idBrand" required>
-
-                                            <!-- Nombre -->
-                                            <div class="col-md-8">
-                                                <label for="name" class="form-label">Nombre <i class="mdi mdi-flag-variant"></i></label>
-                                                <div class="input-group">
-                                                    <span class="input-group-text" id="basic-addon3"><i class="mdi mdi-tag"></i></span>
-                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Nombre completo de la marca"
-                                                           pattern="^[a-zA-ZÀ-ÿ\s]{4,30}$" title="El nombre debe tener entre 4 y 30 caracteres, se admiten solo letras. Ejemplo: Suzuki." required>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-2"></div>
-                                        </div>
-
-                                        <!-- Botones de acción -->
-                                        <div class="mt-4 d-flex justify-content-center">
-                                            <button type="reset" class="btn btn-sm btn-raised btn-secondary me-2">
-                                                <i class="mdi mdi-format-paint"></i> Limpiar
-                                            </button>
-                                            <button type="submit" class="btn btn-sm btn-raised btn-primary">
-                                                <i class="mdi mdi-content-save"></i> Guardar
-                                            </button>
-                                        </div>
-                                    </form>
-                                    <p class="text-center mt-2">
-                                        <small>Los campos marcados con <i class="mdi mdi-flag-variant"></i> son obligatorios</small>
-                                    </p>
                                 </div>
+
+                                <div class="card-body mt-n3">
+                                    <div class="table-responsive scrollbar">
+                                        <table id="tableEmployee" class="table table-striped table-hover table-bordered dt-responsive nowrap w-100">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">#</th>
+                                                    <th class="text-center ">Nombre</th>
+                                                    <th class="text-center ">Apellido</th>
+                                                    <th class="text-center ">Tipo documento</th>
+                                                    <th class="text-center ">N. documento</th>
+                                                    <th class="text-center ">Cargo</th>
+                                                    <th class="text-center ">Salario</th>
+                                                    <th class="text-center ">Imagen</th>
+                                                    <th class="text-center ">Estado</th>
+                                                    <th class="text-center">Acciones</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
@@ -161,6 +155,6 @@
     <script th:src="@{/js/modules/app.min.js}"></script>
     <script th:src="@{/js/pages/jsMenu.js}"></script>
     <script type="module" th:src="@{/js/pages/jsBackup.js}"></script>
-    <script type="module" th:src="@{/js/pages/jsBrand.js}"></script>
+    <script type="module" th:src="@{/js/pages/jsEmployee.js}"></script>
 </body>
 </html>

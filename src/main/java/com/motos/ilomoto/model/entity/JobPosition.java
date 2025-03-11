@@ -3,20 +3,18 @@ package com.motos.ilomoto.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "brand")
-public class Brand {
+@Table(name = "job_position")
+public class JobPosition {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_brand", nullable = false)
-    private Long idBrand;
+    @Column(name = "id_position", nullable = false)
+    private Long idPosition;
 
     @Size(max = 30)
     @NotNull
