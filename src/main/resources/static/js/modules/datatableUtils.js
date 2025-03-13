@@ -17,7 +17,7 @@ export const stylePagBtns = () => {
 };
 
 // Función para agregar margen inferior al menú de longitud
-export const marginLenMenu = (table) => {
+export const marginLenMenu = (table) => { //tableBrand_length
     const idTable = table.replace("#", "").concat("_length");
     const selectElement = document.querySelector(`select[name='${idTable}']`);
     selectElement ? selectElement.classList.add("mb-1") : null;
