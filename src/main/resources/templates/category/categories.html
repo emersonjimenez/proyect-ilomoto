@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" data-sidenav-size="fullscreen" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>Ilomoto</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Category Template" name="description"/>
+    <meta content="Kevin" name="kevin"/>
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" th:href="@{/images/favicon.ico}">
+
+    <!-- DateRangePicker css -->
+    <link th:href="@{/vendor/daterangepicker/daterangepicker.css}" rel="stylesheet" type="text/css">
+
+    <!-- Vector Map css -->
+    <link th:href="@{/vendor/jsvectormap/jsvectormap.min.css}" rel="stylesheet" type="text/css">
+
+    <!-- Theme Config Js -->
+    <script th:src="@{/js/config/hyper-config.js}"></script>
+
+    <!-- Vendor css -->
+    <link th:href="@{/css/vendor.min.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- App css -->
+    <link th:href="@{/css/app-saas.min.css}" rel="stylesheet" type="text/css" id="app-style"/>
+
+    <!-- Icons css -->
+    <link th:href="@{/css/icons.min.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- Datatables css -->
+    <link th:href="@{/vendor/datatables.net-bs5/css/dataTables.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
+    <link th:href="@{/vendor/datatables.net-responsive-bs5/css/responsive.bootstrap5.min.css}" rel="stylesheet" type="text/css" />
+</head>
+
+<body id="categoriesPage">
+
+    <!-- Begin page -->
+    <div class="wrapper">
+
+        <!-- ========== Topbar Start ========== -->
+        <div th:include="layout/topbar::topbar-content" class="navbar-custom"></div>
+        <!-- ========== Topbar End ========== -->
+
+        <!-- ========== Left Sidebar Start ========== -->
+        <div th:include="layout/sidebar::sidebar-content" class="leftside-menu"></div>
+        <!-- ========== Left Sidebar End ========== -->
+
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start Content-->
+            <div class="content">
+                <input type="hidden" id="paginaActual" name="paginaActual" value="categories">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a th:href="@{/}"><i class="mdi mdi-view-dashboard-outline me-1"></i>Inicio</a></li>
+                                        <li class="breadcrumb-item"><a th:href="@{/categories}"><i class="mdi mdi-tag-multiple-outline me-1"></i>Categoría</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">Lista</li>
+                                    </ol>
+                                </div>
+                                <h4 class="page-title">
+                                    <i class="mdi mdi-table-of-contents me-1"></i>Lista de categorías
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mt-n3">
+                        <div class="col-xxl-12">
+                            <div class="card">
+                                <div class="card-header mt-2">
+                                    <div class="row g-0 justify-content-md-start">
+                                        <!-- Botones de Agregar y Exportar -->
+                                        <div class="col-12 col-md-4 col-xl-4 d-flex justify-content-center justify-content-md-start">
+                                            <a class="btn btn-sm btn-outline-primary" th:href="@{/new-category}">
+                                                <i class="mdi mdi-plus-thick me-1"></i>Agregar<!-- Icono Add -->
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-body mt-n3">
+                                    <div class="table-responsive scrollbar">
+                                        <table id="tableCategory" class="table table-striped table-hover table-bordered dt-responsive nowrap w-100">
+                                            <thead>
+                                            <tr>
+                                                <th class="text-center">ID categoría</th>
+                                                <th class="text-center ">Nombre</th>
+                                                <th class="text-center">Acciones</th>
+                                            </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Content -->
+
+            <!-- Modal Logout -->
+            <div th:include="layout/logoutModal::logout-modal"></div>
+
+            <!-- Footer Start -->
+            <footer th:include="layout/footer::footer-content" class="footer"></footer>
+            <!-- end Footer -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+    </div>
+    <!-- END wrapper -->
+
+    <!-- Vendor js -->
+    <script th:src="@{/js/vendor/vendor.min.js}"></script>
+
+    <!-- DateRangePicker js -->
+    <script th:src="@{/vendor/daterangepicker/moment.min.js}"></script>
+    <script th:src="@{/vendor/daterangepicker/daterangepicker.js}"></script>
+
+    <!-- Apex Charts js -->
+    <script th:src="@{/vendor/apexcharts/apexcharts.min.js}"></script>
+
+    <!-- Datatables js -->
+    <script th:src="@{/vendor/datatables.net/js/jquery.dataTables.min.js}"></script>
+    <script th:src="@{/vendor/datatables.net-bs5/js/dataTables.bootstrap5.min.js}"></script>
+    <script th:src="@{/vendor/datatables.net-responsive/js/dataTables.responsive.min.js}"></script>
+    <script th:src="@{/vendor/datatables.net-responsive-bs5/js/responsive.bootstrap5.min.js}"></script>
+
+    <!-- SweetAlert2 js -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!---API Axios-->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- App js -->
+    <script th:src="@{/js/modules/app.min.js}"></script>
+    <script th:src="@{/js/pages/jsMenu.js}"></script>
+    <script type="module" th:src="@{/js/pages/jsCategory.js}"></script>
+
+</body>

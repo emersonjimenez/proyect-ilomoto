@@ -19,5 +19,4 @@ public class BrandConstant {
     public static final String BRAND_DELETE_SUCCESS = "La marca %s se eliminó correctamente.";
     public static final String BRAND_DELETE_CONFLICT = "No se puede eliminar la marca %s porque está relacionado con otros elementos.";
 
-    // Mensajes relacionados con errores generales y validaciones
 }

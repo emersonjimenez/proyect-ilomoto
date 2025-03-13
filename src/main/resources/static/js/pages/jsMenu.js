@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const paginaActual = document.getElementById("paginaActual").value;
 
+    console.log(paginaActual)
+
     // Mapa de las páginas y sus grupos correspondientes
     const menuMap = {
         // Dashboard
@@ -60,6 +62,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Obtener el grupo correspondiente según la página actual
     const grupo = menuMap[paginaActual];
+    console.log(grupo)
 
     if (grupo) {
         activarMenu(grupo, paginaActual);
